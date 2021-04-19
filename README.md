@@ -13,7 +13,7 @@ along with this userbot.
 
 ## Deploy to Heroku
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/callsmusic/tgvc-userbot/tree/smart-plugins)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/AlbertEinsteinTG/tgvc-userbot/tree/smart-plugins)
 
 - Generate Pyrogram session string by
   running [generate-pyrogram-session-string.py](generate-pyrogram-session-string.py)
