@@ -114,39 +114,39 @@ async def play_track(client, m: Message):
     # check audio
     if m.audio:
         if m.audio.duration > (DURATION_AUTOPLAY_MIN * 60):
-            reply = await m.reply_text(
-                f"{emoji.ROBOT} audio which duration longer than "
-                f"{str(DURATION_AUTOPLAY_MIN)} min won't be automatically "
-                "added to playlist"
-            )
-            await _delay_delete_messages((reply,), DELETE_DELAY)
+          #  reply = await m.reply_text(
+          #      f"{emoji.ROBOT} audio which duration longer than "
+           #     f"{str(DURATION_AUTOPLAY_MIN)} min won't be automatically "
+           #     "added to playlist"
+           # )
+           # await _delay_delete_messages((reply,), DELETE_DELAY)
             return
         m_audio = m
     elif m.reply_to_message and m.reply_to_message.audio:
         m_audio = m.reply_to_message
         if m_audio.audio.duration > (DURATION_PLAY_HOUR * 60 * 60):
-            reply = await m.reply_text(
-                f"{emoji.ROBOT} audio which duration longer than "
-                f"{str(DURATION_PLAY_HOUR)} hours won't be added to playlist"
-            )
-            await _delay_delete_messages((reply,), DELETE_DELAY)
+          #  reply = await m.reply_text(
+          #      f"{emoji.ROBOT} audio which duration longer than "
+           #     f"{str(DURATION_PLAY_HOUR)} hours won't be added to playlist"
+           # )
+           # await _delay_delete_messages((reply,), DELETE_DELAY)
             return
     else:
-        await mp.send_playlist()
-        await m.delete()
+      #  await mp.send_playlist()
+      #  await m.delete()
         return
     # check already added
     if playlist and playlist[-1].audio.file_unique_id \
             == m_audio.audio.file_unique_id:
-        reply = await m.reply_text(f"{emoji.ROBOT} already added")
-        await _delay_delete_messages((reply, m), DELETE_DELAY)
+      #  reply = await m.reply_text(f"{emoji.ROBOT} already added")
+      #  await _delay_delete_messages((reply, m), DELETE_DELAY)
         return
     # add to playlist
     playlist.append(m_audio)
     if len(playlist) == 1:
-        m_status = await m.reply_text(
-            f"{emoji.INBOX_TRAY} downloading and transcoding..."
-        )
+    #    m_status = await m.reply_text(
+    #        f"{emoji.INBOX_TRAY} downloading and transcoding..."
+    #    )
         await mp.download_audio(playlist[0])
         group_call.input_filename = os.path.join(
             client.workdir,
@@ -154,15 +154,15 @@ async def play_track(client, m: Message):
             f"{playlist[0].audio.file_unique_id}.raw"
         )
         await mp.update_start_time()
-        await m_status.delete()
+   #     await m_status.delete()
         print(f"- START PLAYING: {playlist[0].audio.title}")
-    await mp.send_playlist()
+ #   await mp.send_playlist()
     for track in playlist[:2]:
         await mp.download_audio(track)
     if not m.audio:
         await m.delete()
 
-
+"""
 @Client.on_message(main_filter
                    & current_vc
                    & filters.regex("^(\\/|!)current$"))
@@ -192,7 +192,7 @@ async def show_help(_, m: Message):
         await mp.msg['help'].delete()
     mp.msg['help'] = await m.reply_text(USERBOT_HELP, quote=False)
     await m.delete()
-
+"""
 
 @Client.on_message(main_filter
                    & self_or_contact_filter
@@ -365,7 +365,7 @@ async def unmute(_, m: Message):
     reply = await m.reply_text(f"{emoji.SPEAKER_MEDIUM_VOLUME} unmuted")
     await _delay_delete_messages((reply, m), DELETE_DELAY)
 
-
+"""
 @Client.on_message(main_filter
                    & current_vc
                    & filters.regex("^(\\/|!)repo$"))
@@ -378,7 +378,7 @@ async def show_repository(_, m: Message):
         quote=False
     )
     await m.delete()
-
+"""
 
 # - Other functions
 
